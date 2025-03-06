@@ -49,7 +49,7 @@
 
       <div class="comments-list">
         <h3>What Others Are Saying</h3>
-        <div v-if="comments.length === 0" class="no-comments">Be the first to leave a comment! 😊</div>
+        <div v-if="comments.length === 0" class="no-comments">Be the first to leave a comment!</div>
         <div v-for="(comment, index) in comments" :key="index" class="comment">
           <h4>{{ comment.name }}</h4>
           <p>{{ comment.message }}</p>
@@ -100,7 +100,10 @@ export default {
       { name: "Me as a Kid", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/kidme.jpg" },
       { name: "Me and Mico", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/micoandme.jpg" },
       { name: "Shoes", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/shoes.jpg" },
-      { name: "Friends", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/friends.jpg" }
+      { name: "Friends", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/friends.jpg" },
+      { name: "Blue", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/blue.jpg" },
+      { name: "Food", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/food.jpg" },
+      { name: "Valo", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/valo.jpg" }
     ]);
 
     const lightboxOpen = ref(false);

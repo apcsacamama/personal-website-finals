@@ -26,7 +26,10 @@ const images = ref([
   { name: "Me as a Kid", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/kidme.jpg" },
   { name: "Me and Mico", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/micoandme.jpg" },
   { name: "Shoes", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/shoes.jpg" },
-  { name: "Friends", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/friends.jpg" }
+  { name: "Friends", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/friends.jpg" },
+  { name: "Blue", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/blue.jpg" }
+  { name: "Food", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/food.jpg" },
+  { name: "Valo", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/valo.jpg" }
 ]);
 
 const lightboxOpen = ref(false);
