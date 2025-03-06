@@ -20,7 +20,7 @@
         <section class="main-content">
           <div id="about" class="about">
             <h2>About Me</h2>
-            <p>Hello! My name is Shanteiy A. Camama, but you can also call me Shan...</p>
+            <p>Hello! My name is Shanteiy A. Camama, but you can also call me Shan. I am currently in my 2nd year of college, and here are some of the things about me.</p>
           </div>
 
           <div id="education" class="education">
@@ -47,35 +47,13 @@
             <h2>Goals in Life / Dream</h2>
             <p>My dream is to become a successful software developer...</p>
           </div>
-
-          <div class="comments-section">
-            <h2>Leave a Comment</h2>
-            <form @submit.prevent="addComment">
-              <label for="name">Name:</label>
-              <input type="text" id="name" v-model="newComment.name" required>
-
-              <label for="message">Message:</label>
-              <textarea id="message" v-model="newComment.message" required></textarea>
-
-              <button type="submit" class="button">Submit</button>
-            </form>
-
-            <div class="comments-list">
-              <h2>Comments</h2>
-              <div v-if="comments.length === 0">No comments yet. Be the first to comment!</div>
-              <div v-for="(comment, index) in comments" :key="index" class="comment">
-                <h3>{{ comment.name }}</h3>
-                <p>{{ comment.message }}</p>
-              </div>
-            </div>
-          </div>
         </section>
 
         <aside class="sidebar">
           <h2>Picture Gallery</h2>
-          <p>Here are some pictures that represent me:</p>
+          <p>Click an image to enlarge:</p>
           <div class="gallery">
-            <div v-for="(image, index) in images" :key="index" class="gallery-item">
+            <div v-for="(image, index) in images" :key="index" class="gallery-item" @click="openLightbox(index)">
               <img :src="image" alt="Gallery Image" />
             </div>
           </div>
@@ -85,6 +63,13 @@
       <footer class="footer">
         <p>&copy; 2025 Shanteiy A. Camama | Asia Pacific College</p>
       </footer>
+
+      <!-- Lightbox Overlay -->
+      <div v-if="lightboxOpen" class="lightbox" @click="closeLightbox">
+        <button class="lightbox-btn prev" @click.stop="prevImage">❮</button>
+        <img :src="images[currentImageIndex]" class="lightbox-image" @click.stop />
+        <button class="lightbox-btn next" @click.stop="nextImage">❯</button>
+      </div>
     </div>
   </div>
 </template>
@@ -93,30 +78,35 @@
 export default {
   data() {
     return {
-      newComment: {
-        name: '',
-        message: ''
-      },
-      comments: [],
       images: [
         "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/meandangelo.jpg",
         "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/kidme.jpg",
         "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/micoandme.jpg",
         "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/shoes.jpg",
         "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/friends.jpg"
-      ]
+      ],
+      lightboxOpen: false,
+      currentImageIndex: 0
     };
   },
   methods: {
-    addComment() {
-      if (this.newComment.name && this.newComment.message) {
-        this.comments.push({ ...this.newComment });
-        this.newComment.name = '';
-        this.newComment.message = '';
-      }
-    },
     redirectToSocials() {
       window.location.href = "https://frankie-socmeds.carrd.co/";
+    },
+    openLightbox(index) {
+      this.currentImageIndex = index;
+      this.lightboxOpen = true;
+      document.body.style.overflow = 'hidden';
+    },
+    closeLightbox() {
+      this.lightboxOpen = false;
+      document.body.style.overflow = '';
+    },
+    nextImage() {
+      this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
+    },
+    prevImage() {
+      this.currentImageIndex = (this.currentImageIndex - 1 + this.images.length) % this.images.length;
     }
   }
 };
@@ -174,4 +164,38 @@ export default {
   width: 100%;
   text-align: center;
 }
+
+/* Lightbox Styles */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.lightbox-image {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+.lightbox-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
 </style>
