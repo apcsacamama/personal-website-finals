@@ -38,33 +38,28 @@
         </div>
       </section>
 
-       <div class="gallery">
-    <img
-      v-for="(image, index) in images"
-      :key="index"
-      :src="image.url"
-      :alt="image.name"
-      @click="openLightbox(index)"
-    />
-  </div>
+      <div class="gallery">
+        <img v-for="(image, index) in images" :key="index" :src="image.url" :alt="image.name" @click="openLightbox(index)" />
+      </div>
 
-  <div v-if="lightboxOpen" class="lightbox active" @click="closeLightbox">
-    <div class="lightbox-controls">
-      <button @click.stop="prevImage">◀</button>
-      <img :src="images[currentImageIndex].url" :alt="images[currentImageIndex].name" />
-      <button @click.stop="nextImage">▶</button>
-    </div>
-  </div>
+      <div v-if="lightboxOpen" class="lightbox active" @click="closeLightbox">
+        <div class="lightbox-controls">
+          <button @click.stop="prevImage">◀</button>
+          <img :src="images[currentImageIndex].url" :alt="images[currentImageIndex].name" />
+          <button @click.stop="nextImage">▶</button>
+        </div>
+      </div>
+    </main> <!-- Added missing closing tag for main -->
 
     <footer class="footer">
       <p>&copy; 2025 Shanteiy A. Camama | Asia Pacific College</p>
     </footer>
   </div>
-
-
 </template>
 
-<script scoped>
+<script>
+import { ref } from "vue";
+
 export default {
   data() {
     return {
@@ -88,40 +83,33 @@ export default {
       ],
       newComment: { name: "", message: "" },
       comments: [],
-      import { ref } from "vue";
-
-const images = ref([
-  { name: "Me and Angelo the penguin", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/meandangelo.jpg" },
-  { name: "Me as a Kid", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/kidme.jpg" },
-  { name: "Me and Mico", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/micoandme.jpg" },
-  { name: "Shoes", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/shoes.jpg" },
-  { name: "Friends", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/friends.jpg" }
-]);
-
-const lightboxOpen = ref(false);
-const currentImageIndex = ref(0);
-
-const openLightbox = (index) => {
-  currentImageIndex.value = index;
-  lightboxOpen.value = true;
-  document.body.style.overflow = 'hidden';
-};
-
-const closeLightbox = () => {
-  lightboxOpen.value = false;
-  document.body.style.overflow = '';
-};
-
-const nextImage = () => {
-  currentImageIndex.value = (currentImageIndex.value + 1) % images.value.length;
-};
-
-const prevImage = () => {
-  currentImageIndex.value = (currentImageIndex.value - 1 + images.value.length) % images.value.length;
-};
+      images: [
+        { name: "Me and Angelo the penguin", url: "your-image-url-1.jpg" },
+        { name: "Me as a Kid", url: "your-image-url-2.jpg" },
+        { name: "Me and Mico", url: "your-image-url-3.jpg" },
+        { name: "Shoes", url: "your-image-url-4.jpg" },
+        { name: "Friends", url: "your-image-url-5.jpg" }
+      ],
+      lightboxOpen: false,
+      currentImageIndex: 0
     };
   },
   methods: {
+    openLightbox(index) {
+      this.currentImageIndex = index;
+      this.lightboxOpen = true;
+      document.body.style.overflow = 'hidden';
+    },
+    closeLightbox() {
+      this.lightboxOpen = false;
+      document.body.style.overflow = '';
+    },
+    nextImage() {
+      this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
+    },
+    prevImage() {
+      this.currentImageIndex = (this.currentImageIndex - 1 + this.images.length) % this.images.length;
+    },
     addComment() {
       if (this.newComment.name && this.newComment.message) {
         this.comments.push({ name: this.newComment.name, message: this.newComment.message });
