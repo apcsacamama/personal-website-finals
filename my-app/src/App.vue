@@ -84,11 +84,11 @@ export default {
       newComment: { name: "", message: "" },
       comments: [],
       images: [
-        { name: "Me and Angelo the penguin", url: "your-image-url-1.jpg" },
-        { name: "Me as a Kid", url: "your-image-url-2.jpg" },
-        { name: "Me and Mico", url: "your-image-url-3.jpg" },
-        { name: "Shoes", url: "your-image-url-4.jpg" },
-        { name: "Friends", url: "your-image-url-5.jpg" }
+        { name: "Me and Angelo the penguin", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/meandangelo.jpg" },
+        { name: "Me as a Kid", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/kidme.jpg" },
+        { name: "Me and Mico", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/micoandme.jpg" },
+        { name: "Shoes", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/shoes.jpg" },
+        { name: "Friends", url: "https://github.com/apcsacamama/personal-website-finals/raw/main/my-app/img/friends.jpg" }
       ],
       lightboxOpen: false,
       currentImageIndex: 0
